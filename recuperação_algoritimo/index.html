@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recuperação de algoritimo - Gabriel Cavalcanti Silva RA03221001 SIS</title>
+</head>
+<body>
+    <h1>Ranking de capital dos países</h1>
+
+    Nome do país: <input type="text" placeholder="EX: Brasil" id="nomePais"><br><br>
+
+    População: <input type="number" placeholder="EX: 100000" id="Populacao"><br><br>
+
+    Grau de liberdade econômica: <input type="number" placeholder="um número 0 a 100" id="liberdadeEconomica"><br><br>
+
+    <button onclick="cadastrar()">Cadastrar país</button>
+    <button onclick="analisar()">Analisar</button><br><br>
+
+    <div id="div_resultado"></div>
+</body>
+</html>
+
+<script>
+    function cadastrar(){
+        var pais = nomePais.value
+        var popolacao = Number(Populacao.value)
+        var liberdade = Number(liberdadeEconomica.value)
+        var contador = 0
+        const paises = []
+
+        while (contador < 5){
+            if(popolacao < 1000 || liberdade < 0 || liberdade > 100){
+                alert("Valores inválidos!")
+                return
+            }
+
+            const paises {
+                pais:pais
+            }
+
+            if(contador > 5){
+                div_resultado.innerHTML = ""
+            }
+        }
+    }
+    function analisar(){
+
+    }
+</script>
