@@ -21,29 +21,100 @@
 </html>
 
 <script>
+    var array_pais = []
+    var array_populacao = []
+    var array_liberdade = []
     function cadastrar(){
         var pais = nomePais.value
-        var popolacao = Number(Populacao.value)
+        var populacao = Number(Populacao.value)
         var liberdade = Number(liberdadeEconomica.value)
-        var contador = 0
-        const paises = []
 
-        while (contador < 5){
-            if(popolacao < 1000 || liberdade < 0 || liberdade > 100){
+            if(populacao >= 1000 && liberdade >= 0 && liberdade <= 100){
+                
+                array_pais.push(pais)
+                array_populacao.push(populacao)
+                array_liberdade.push(liberdade)
+                alert("Valores cadastrados com sucesso!")
+
+            }else{
                 alert("Valores inválidos!")
                 return
             }
+        }
+    function analisar(){
+        div_resultado.innerHTML = ""
+        contador = 0
 
-            const paises {
-                pais:pais
+        while(contador < array_pais.length){
+
+            var grauLiberdade = ""
+            var idh = ""
+            var desempregoMedio = ""
+            var desempregados = ""
+            var urlimg = ""
+
+            // Países reprimidos
+            if(array_liberdade[contador] >= 0 && array_liberdade[contador] <= 50){
+                grauLiberdade = "Reprimido"
+                idh = "0.60"
+                desempregoMedio = 22
+                desempregados = Number(array_populacao[contador] * desempregoMedio).toFixed(0)
+                urlimg = "https://moodle.sptech.school/pluginfile.php/17189/mod_assign/intro/image%20%286%29.png"
+            }
+            
+            // Países Quase Reprimidos
+            if(array_liberdade[contador] > 50 && array_liberdade[contador] <= 60){
+                grauLiberdade = "Quase reprimido"
+                idh = "0.65"
+                desempregoMedio = 15
+                desempregados = Number(array_populacao[contador] * desempregoMedio).toFixed(0)
+                urlimg ="https://moodle.sptech.school/pluginfile.php/17189/mod_assign/intro/image%20%286%29.png"
+            }
+            
+            // Países Modetadamente livre
+            if(array_liberdade[contador] > 60 && array_liberdade[contador] <= 70){
+                grauLiberdade = "Moderadamente livre"
+                idh = "0.74"
+                desempregoMedio = 8
+                desempregados = Number(array_populacao[contador] * desempregoMedio).toFixed(0)
+                urlimg = "https://moodle.sptech.school/pluginfile.php/17189/mod_assign/intro/image%20%285%29.png"
+            }
+            
+            // Países Quase livres
+            if(array_liberdade[contador] > 70 && array_liberdade[contador] <= 80){
+                grauLiberdade = "Quase livre"
+                idh = "0.77"
+                desempregoMedio = 7
+                desempregados = Number(array_populacao[contador] * desempregoMedio).toFixed(0)
+                urlimg = "https://moodle.sptech.school/pluginfile.php/17189/mod_assign/intro/image%20%284%29.png"
+            }
+            
+            // Países Livres
+            if(array_liberdade[contador] > 80 && array_liberdade[contador] <= 100){
+                grauLiberdade = "Livre"
+                idh = "0.85"
+                desempregoMedio = 5
+                desempregados = Number(array_populacao[contador] * desempregoMedio).toFixed(0)
+                urlimg ="https://moodle.sptech.school/pluginfile.php/17189/mod_assign/intro/image%20%281%29.png"
             }
 
-            if(contador > 5){
-                div_resultado.innerHTML = ""
-            }
+            div_resultado.innerHTML += `<p>
+            País ${contador + 1}: ${array_pais[contador]} <br>
+            Categoria: ${grauLiberdade} <br>
+            Habitantes: ${array_populacao[contador]}<br>
+            IDH médio provável: ${idh} <br>    
+            Desemprego médio provável: ${desempregoMedio}%, ou seja, ${desempregados} talvez estejam sem emprego <br>
+            <img src="${urlimg}" id="image"><br><br>
+        </p>`
+
+            contador++
         }
     }
-    function analisar(){
-
-    }
 </script>
+
+<!-- https://moodle.sptech.school/pluginfile.php/17189/mod_assign/intro/image%20%281%29.png -Murray Rothbard
+https://moodle.sptech.school/pluginfile.php/17189/mod_assign/intro/image%20%284%29.png -Milton Friedman
+https://moodle.sptech.school/pluginfile.php/17189/mod_assign/intro/image%20%285%29.png -John Maynard Keynes
+https://moodle.sptech.school/pluginfile.php/17189/mod_assign/intro/image%20%286%29.png -George Bernard Shaw
+https://moodle.sptech.school/pluginfile.php/17189/mod_assign/intro/image%20%286%29.png -Karl Marx
+-->
